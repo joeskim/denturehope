@@ -31,16 +31,18 @@ export default function Home() {
     <div className="min-h-screen">
       {/* Hero Section with Image */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-        {/* Background Image */}
+        {/* Solid background fallback */}
+        <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-slate-800 to-sky-900"></div>
+        {/* Background Image with strong overlay */}
         <div className="absolute inset-0">
           <Image
-            src="/images/hero-smile.jpg"
-            alt="Confident smile with dental implants"
+            src="/photos/confident-smile.png"
+            alt="Confident patient with dental implants"
             fill
-            className="object-cover"
+            className="object-cover opacity-30"
             priority
           />
-          <div className="absolute inset-0 bg-gradient-to-br from-slate-900/90 via-slate-800/85 to-sky-900/80"></div>
+          <div className="absolute inset-0 bg-gradient-to-b from-slate-900/95 via-slate-900/90 to-slate-900/80"></div>
         </div>
 
         {/* Content */}
@@ -177,19 +179,6 @@ export default function Home() {
             </div>
 
             <div className="space-y-6">
-              <div className="relative rounded-2xl overflow-hidden shadow-2xl">
-                <Image
-                  src="/images/dental-consultation.jpg"
-                  alt="Dental consultation with patient"
-                  width={600}
-                  height={400}
-                  className="w-full h-auto"
-                />
-                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-slate-900/90 to-transparent p-6">
-                  <p className="text-white font-medium">Expert consultation to find your perfect solution</p>
-                </div>
-              </div>
-
               <div className="bg-white border-2 border-slate-200 p-8 rounded-2xl">
                 <h3 className="text-xl font-bold text-slate-900 mb-4">The Problem with 4-Implant Solutions</h3>
                 <ul className="space-y-3 text-slate-600">
@@ -200,6 +189,15 @@ export default function Home() {
                 </ul>
                 <p className="mt-4 font-semibold text-sky-600">
                   The LeClerq-Martinez Implant Bridge answers all of these problems.
+                </p>
+              </div>
+
+              <div className="bg-gradient-to-r from-sky-500 to-amber-400 p-8 rounded-2xl text-white">
+                <h3 className="text-xl font-bold mb-3">Included with Every Restoration</h3>
+                <p className="text-white/90">
+                  Unlike other providers, we include a <strong>3-year limited warranty</strong> on all final 
+                  restorations at no additional cost. The peace of mind from knowing your implant surgery 
+                  and reconstruction were done properly is priceless.
                 </p>
               </div>
             </div>
@@ -295,8 +293,8 @@ export default function Home() {
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="relative rounded-2xl overflow-hidden shadow-2xl">
               <Image
-                src="/images/dental-team.jpg"
-                alt="Halcyon Dental team"
+                src="/photos/drkim_about.png"
+                alt="Dr. Kim and the Halcyon Dental team"
                 width={600}
                 height={400}
                 className="w-full h-auto"

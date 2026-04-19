@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { MapPin, Phone, Mail, Clock } from "lucide-react";
 import { siteConfig } from "@/lib/utils";
@@ -31,11 +32,14 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
           {/* Brand Column */}
           <div className="space-y-4">
-            <div className="flex items-center space-x-2">
-              <div className="w-10 h-10 rounded-full bg-gradient-to-br from-sky-500 to-amber-400 flex items-center justify-center">
-                <span className="text-white font-bold text-lg">DH</span>
-              </div>
-              <span className="font-bold text-xl">{siteConfig.name}</span>
+            <div className="flex items-center">
+              <Image
+                src="/photos/updated_horizontal_logo_horizontal.png"
+                alt="DentureHope by Halcyon Dental"
+                width={150}
+                height={38}
+                className="h-8 w-auto"
+              />
             </div>
             <p className="text-slate-400 text-sm leading-relaxed">
               Helping denture sufferers discover hope through advanced dental implant solutions. 
