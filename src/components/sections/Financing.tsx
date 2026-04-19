@@ -8,7 +8,7 @@ export default function Financing() {
   return (
     <section
       id="financing"
-      style={{ background: "var(--color-ink)", color: "var(--color-bg)", padding: "112px 0" }}
+      style={{ background: "var(--color-ink)", color: "var(--color-bg)", padding: "var(--space-section) 0" }}
     >
       <div style={{ maxWidth: 1280, margin: "0 auto", padding: "0 clamp(20px, 3vw, 48px)" }}>
         <div

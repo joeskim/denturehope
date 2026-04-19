@@ -28,7 +28,7 @@ export default function BeforeAfter() {
       id="stories"
       style={{
         background: "var(--color-bg)",
-        padding: "112px 0",
+        padding: "var(--space-section) 0",
         borderTop: "1px solid var(--color-line)",
       }}
     >
@@ -42,7 +42,7 @@ export default function BeforeAfter() {
         <div
           className="dh-ba-grid"
           style={{
-            marginTop: 64,
+            marginTop: 32,
             display: "grid",
             gridTemplateColumns: "repeat(3, 1fr)",
             gap: 32,

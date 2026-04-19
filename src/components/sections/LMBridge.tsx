@@ -21,7 +21,7 @@ export default function LMBridge() {
       id="lm-bridge"
       style={{
         background: "var(--color-surface)",
-        padding: "112px 0",
+        padding: "var(--space-section) 0",
         borderTop: "1px solid var(--color-line)",
       }}
     >
@@ -35,7 +35,7 @@ export default function LMBridge() {
         <div
           className="dh-lm-grid"
           style={{
-            marginTop: 72,
+            marginTop: 32,
             display: "grid",
             gridTemplateColumns: "1fr 1fr",
             gap: 32,

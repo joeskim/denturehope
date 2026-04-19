@@ -38,13 +38,13 @@ export default function Faq() {
       id="faq"
       style={{
         background: "var(--color-bg)",
-        padding: "112px 0",
+        padding: "var(--space-section) 0",
         borderTop: "1px solid var(--color-line)",
       }}
     >
       <div style={{ maxWidth: 1100, margin: "0 auto", padding: "0 clamp(20px, 3vw, 48px)" }}>
         <SectionHeader eyebrow="Honest answers" title="Questions we get asked every week." />
-        <div style={{ marginTop: 56, borderTop: "1px solid var(--color-line)" }}>
+        <div style={{ marginTop: 32, borderTop: "1px solid var(--color-line)" }}>
           {ITEMS.map(([q, a], i) => {
             const isOpen = open === i;
             return (

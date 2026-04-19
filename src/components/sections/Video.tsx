@@ -5,7 +5,7 @@ export default function Video() {
     <section
       style={{
         background: "var(--color-surface)",
-        padding: "112px 0",
+        padding: "var(--space-section) 0",
         borderTop: "1px solid var(--color-line)",
       }}
     >
@@ -19,7 +19,7 @@ export default function Video() {
         <div
           className="dh-video-grid"
           style={{
-            marginTop: 64,
+            marginTop: 32,
             display: "grid",
             gridTemplateColumns: "2fr 1fr",
             gap: 24,
