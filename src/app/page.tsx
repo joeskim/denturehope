@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useState } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
@@ -28,15 +29,18 @@ export default function Home() {
 
   return (
     <div className="min-h-screen">
-      {/* Hero Section */}
+      {/* Hero Section with Image */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-        {/* Background */}
-        <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-slate-800 to-sky-900">
-          <div className="absolute inset-0 opacity-30">
-            <div className="absolute top-0 -left-4 w-72 h-72 bg-sky-500 rounded-full mix-blend-multiply filter blur-xl animate-pulse"></div>
-            <div className="absolute top-0 -right-4 w-72 h-72 bg-amber-400 rounded-full mix-blend-multiply filter blur-xl animate-pulse" style={{ animationDelay: "2s" }}></div>
-            <div className="absolute -bottom-8 left-20 w-72 h-72 bg-sky-400 rounded-full mix-blend-multiply filter blur-xl animate-pulse" style={{ animationDelay: "4s" }}></div>
-          </div>
+        {/* Background Image */}
+        <div className="absolute inset-0">
+          <Image
+            src="/images/hero-smile.jpg"
+            alt="Confident smile with dental implants"
+            fill
+            className="object-cover"
+            priority
+          />
+          <div className="absolute inset-0 bg-gradient-to-br from-slate-900/90 via-slate-800/85 to-sky-900/80"></div>
         </div>
 
         {/* Content */}
@@ -173,6 +177,19 @@ export default function Home() {
             </div>
 
             <div className="space-y-6">
+              <div className="relative rounded-2xl overflow-hidden shadow-2xl">
+                <Image
+                  src="/images/dental-consultation.jpg"
+                  alt="Dental consultation with patient"
+                  width={600}
+                  height={400}
+                  className="w-full h-auto"
+                />
+                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-slate-900/90 to-transparent p-6">
+                  <p className="text-white font-medium">Expert consultation to find your perfect solution</p>
+                </div>
+              </div>
+
               <div className="bg-white border-2 border-slate-200 p-8 rounded-2xl">
                 <h3 className="text-xl font-bold text-slate-900 mb-4">The Problem with 4-Implant Solutions</h3>
                 <ul className="space-y-3 text-slate-600">
@@ -183,15 +200,6 @@ export default function Home() {
                 </ul>
                 <p className="mt-4 font-semibold text-sky-600">
                   The LeClerq-Martinez Implant Bridge answers all of these problems.
-                </p>
-              </div>
-
-              <div className="bg-gradient-to-r from-sky-500 to-amber-400 p-8 rounded-2xl text-white">
-                <h3 className="text-xl font-bold mb-3">Included with Every Restoration</h3>
-                <p className="text-white/90">
-                  Unlike other providers, we include a <strong>3-year limited warranty</strong> on all final 
-                  restorations at no additional cost. The peace of mind from knowing your implant surgery 
-                  and reconstruction were done properly is priceless.
                 </p>
               </div>
             </div>
@@ -221,40 +229,51 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="overflow-x-auto">
-            <table className="w-full bg-white rounded-2xl shadow-xl overflow-hidden">
-              <thead>
-                <tr className="bg-slate-900 text-white">
-                  <th className="px-6 py-4 text-left font-semibold">Attribute</th>
-                  <th className="px-6 py-4 text-center font-semibold">2 Implant Overdenture</th>
-                  <th className="px-6 py-4 text-center font-semibold">4 Implant Hybrid</th>
-                  <th className="px-6 py-4 text-center bg-sky-600 font-semibold">LeClerq-Martinez Bridge</th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-slate-200">
-                {[
-                  { attr: "Eating", values: ["Average", "Excellent", "Excellent"] },
-                  { attr: "Esthetics", values: ["Average", "Average", "Excellent"] },
-                  { attr: "Speech", values: ["Average", "Above Average", "Excellent"] },
-                  { attr: "Durability", values: ["Average", "Average", "Excellent"] },
-                  { attr: "Removable?", values: ["Yes", "No", "No"] },
-                  { attr: "Repair Costs", values: ["Low to medium", "Medium to high", "Limited to single crown"] },
-                  { attr: "Temporization", values: ["None", "None or use old dentures", "Simple"] },
-                  { attr: "Our Fee", values: ["$3,000 - $6,500", "$8,700 per arch", "$8,700 per arch"] },
-                  { attr: "Warranty", values: ["Standard", "Standard", "3-Year Included"] },
-                ].map((row, i) => (
-                  <tr key={i} className={i % 2 === 0 ? "bg-slate-50" : "bg-white"}>
-                    <td className="px-6 py-4 font-semibold text-slate-900">{row.attr}</td>
-                    <td className="px-6 py-4 text-center text-slate-600">{row.values[0]}</td>
-                    <td className="px-6 py-4 text-center text-slate-600">{row.values[1]}</td>
-                    <td className="px-6 py-4 text-center bg-sky-50 font-semibold text-sky-700">{row.values[2]}</td>
+          <div className="grid lg:grid-cols-2 gap-12 items-center mb-12">
+            <div className="overflow-x-auto">
+              <table className="w-full bg-white rounded-2xl shadow-xl overflow-hidden">
+                <thead>
+                  <tr className="bg-slate-900 text-white">
+                    <th className="px-6 py-4 text-left font-semibold">Attribute</th>
+                    <th className="px-6 py-4 text-center font-semibold">2 Implant Overdenture</th>
+                    <th className="px-6 py-4 text-center font-semibold">4 Implant Hybrid</th>
+                    <th className="px-6 py-4 text-center bg-sky-600 font-semibold">LeClerq-Martinez Bridge</th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
+                </thead>
+                <tbody className="divide-y divide-slate-200">
+                  {[
+                    { attr: "Eating", values: ["Average", "Excellent", "Excellent"] },
+                    { attr: "Esthetics", values: ["Average", "Average", "Excellent"] },
+                    { attr: "Speech", values: ["Average", "Above Average", "Excellent"] },
+                    { attr: "Durability", values: ["Average", "Average", "Excellent"] },
+                    { attr: "Removable?", values: ["Yes", "No", "No"] },
+                    { attr: "Repair Costs", values: ["Low to medium", "Medium to high", "Limited to single crown"] },
+                    { attr: "Temporization", values: ["None", "None or use old dentures", "Simple"] },
+                    { attr: "Our Fee", values: ["$3,000 - $6,500", "$8,700 per arch", "$8,700 per arch"] },
+                    { attr: "Warranty", values: ["Standard", "Standard", "3-Year Included"] },
+                  ].map((row, i) => (
+                    <tr key={i} className={i % 2 === 0 ? "bg-slate-50" : "bg-white"}>
+                      <td className="px-6 py-4 font-semibold text-slate-900">{row.attr}</td>
+                      <td className="px-6 py-4 text-center text-slate-600">{row.values[0]}</td>
+                      <td className="px-6 py-4 text-center text-slate-600">{row.values[1]}</td>
+                      <td className="px-6 py-4 text-center bg-sky-50 font-semibold text-sky-700">{row.values[2]}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+            <div className="relative rounded-2xl overflow-hidden shadow-2xl">
+              <Image
+                src="/images/dental-office.jpg"
+                alt="Modern dental office"
+                width={600}
+                height={400}
+                className="w-full h-auto"
+              />
+            </div>
           </div>
 
-          <div className="mt-8 text-center">
+          <div className="text-center">
             <p className="text-slate-600 mb-4">
               Individual circumstances may affect which options are available to you. Major bone grafting 
               may be necessary for fixed options.
@@ -266,6 +285,62 @@ export default function Home() {
               <Phone className="w-4 h-4" />
               <span>Call 331.287.3420 to discuss your options</span>
             </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* About Us Section */}
+      <section id="about-us" className="py-24 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <div className="relative rounded-2xl overflow-hidden shadow-2xl">
+              <Image
+                src="/images/dental-team.jpg"
+                alt="Halcyon Dental team"
+                width={600}
+                height={400}
+                className="w-full h-auto"
+              />
+            </div>
+            <div>
+              <h2 className="text-3xl md:text-5xl font-bold text-slate-900 mb-6">
+                About{' '}
+                <span className="bg-gradient-to-r from-sky-500 to-amber-400 bg-clip-text text-transparent">
+                  Halcyon Dental
+                </span>
+              </h2>
+              <div className="space-y-6 text-slate-600">
+                <p className="text-lg">
+                  Halcyon Dental PLLC provides educational resources and advanced dental implant solutions 
+                  for those suffering with traditional removable dentures.
+                </p>
+                <p>
+                  We are one of the few dental implant practices in the world to offer the LeClerq-Martinez 
+                  Implant Bridge, and we&apos;re the only office in the Midwest with the specialized implant 
+                  prostheses manufacturing equipment necessary to provide this premium option at a 
+                  significantly lower cost.
+                </p>
+                <p>
+                  Our team performs more implant-related procedures every year than most dentists will in 
+                  their entire career. We have a dedicated implant and grafting surgical suite outfitted with 
+                  specialized equipment including appropriate monitors for providing IV sedation.
+                </p>
+              </div>
+              <div className="mt-8 space-y-4">
+                <div className="flex items-center space-x-3">
+                  <CheckCircle className="w-6 h-6 text-sky-500" />
+                  <span className="font-medium text-slate-900">3-year limited warranty on all restorations</span>
+                </div>
+                <div className="flex items-center space-x-3">
+                  <CheckCircle className="w-6 h-6 text-sky-500" />
+                  <span className="font-medium text-slate-900">In-house implant laboratory</span>
+                </div>
+                <div className="flex items-center space-x-3">
+                  <CheckCircle className="w-6 h-6 text-sky-500" />
+                  <span className="font-medium text-slate-900">Free estimate reviews from other dentists</span>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
