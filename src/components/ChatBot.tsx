@@ -85,33 +85,33 @@ export default function ChatBot() {
   return (
     <div className="flex flex-col h-[500px]">
       {/* Header */}
-      <div className="bg-gradient-to-r from-sky-500 to-amber-400 p-4 flex items-center space-x-3">
+      <div className="bg-gradient-to-r from-teal-500 to-teal-600 p-4 flex items-center space-x-3">
         <div className="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center">
           <Bot className="w-6 h-6 text-white" />
         </div>
         <div>
-          <h3 className="font-semibold text-white">Dental Implant Assistant</h3>
-          <p className="text-xs text-white/80">Typically replies in seconds</p>
+          <h3 className="font-medium text-white">Dental Implant Assistant</h3>
+          <p className="text-xs text-teal-100">Typically replies in seconds</p>
         </div>
       </div>
 
       {/* Messages */}
-      <div className="flex-1 overflow-y-auto p-4 space-y-4">
+      <div className="flex-1 overflow-y-auto p-6 space-y-4">
         {messages.map((message, index) => (
           <div
             key={index}
             className={`flex ${message.role === "user" ? "justify-end" : "justify-start"}`}
           >
             <div
-              className={`flex items-start space-x-2 max-w-[80%] ${
+              className={`flex items-start space-x-3 max-w-[85%] ${
                 message.role === "user" ? "flex-row-reverse space-x-reverse" : ""
               }`}
             >
               <div
                 className={`w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 ${
                   message.role === "user"
-                    ? "bg-sky-500"
-                    : "bg-gradient-to-br from-sky-500 to-amber-400"
+                    ? "bg-stone-800"
+                    : "bg-gradient-to-br from-teal-500 to-teal-600"
                 }`}
               >
                 {message.role === "user" ? (
@@ -121,10 +121,10 @@ export default function ChatBot() {
                 )}
               </div>
               <div
-                className={`rounded-2xl px-4 py-3 ${
+                className={`rounded-2xl px-5 py-3 ${
                   message.role === "user"
-                    ? "bg-sky-500 text-white rounded-tr-sm"
-                    : "bg-slate-100 text-slate-800 rounded-tl-sm"
+                    ? "bg-teal-500 text-white rounded-tr-lg"
+                    : "bg-stone-100 text-stone-800 rounded-tl-lg"
                 }`}
               >
                 <p className="text-sm leading-relaxed whitespace-pre-wrap">{message.content}</p>
@@ -135,15 +135,15 @@ export default function ChatBot() {
         
         {isTyping && (
           <div className="flex justify-start">
-            <div className="flex items-start space-x-2">
-              <div className="w-8 h-8 rounded-full bg-gradient-to-br from-sky-500 to-amber-400 flex items-center justify-center">
+            <div className="flex items-start space-x-3">
+              <div className="w-8 h-8 rounded-full bg-gradient-to-br from-teal-500 to-teal-600 flex items-center justify-center">
                 <Bot className="w-4 h-4 text-white" />
               </div>
-              <div className="bg-slate-100 rounded-2xl rounded-tl-sm px-4 py-3">
+              <div className="bg-stone-100 rounded-2xl rounded-tl-lg px-5 py-3">
                 <div className="flex space-x-1">
-                  <div className="w-2 h-2 bg-slate-400 rounded-full animate-bounce" style={{ animationDelay: "0ms" }}></div>
-                  <div className="w-2 h-2 bg-slate-400 rounded-full animate-bounce" style={{ animationDelay: "150ms" }}></div>
-                  <div className="w-2 h-2 bg-slate-400 rounded-full animate-bounce" style={{ animationDelay: "300ms" }}></div>
+                  <div className="w-2 h-2 bg-stone-400 rounded-full animate-bounce" style={{ animationDelay: "0ms" }}></div>
+                  <div className="w-2 h-2 bg-stone-400 rounded-full animate-bounce" style={{ animationDelay: "150ms" }}></div>
+                  <div className="w-2 h-2 bg-stone-400 rounded-full animate-bounce" style={{ animationDelay: "300ms" }}></div>
                 </div>
               </div>
             </div>
@@ -161,12 +161,12 @@ export default function ChatBot() {
             value={input}
             onChange={(e) => setInput(e.target.value)}
             placeholder="Type your question..."
-            className="flex-1 px-4 py-3 rounded-full border border-slate-200 focus:outline-none focus:ring-2 focus:ring-sky-500 focus:border-transparent"
+            className="flex-1 px-5 py-3 rounded-full border border-stone-200 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent bg-white"
           />
           <button
             type="submit"
             disabled={!input.trim()}
-            className="w-12 h-12 rounded-full bg-gradient-to-r from-sky-500 to-amber-400 flex items-center justify-center text-white hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed transition-all"
+            className="w-12 h-12 rounded-full bg-teal-500 flex items-center justify-center text-white hover:bg-teal-600 disabled:opacity-50 disabled:cursor-not-allowed transition-colors shadow-md"
           >
             <Send className="w-5 h-5" />
           </button>

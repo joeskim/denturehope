@@ -26,33 +26,33 @@ const TwitterIcon = () => (
 
 export default function Footer() {
   return (
-    <footer className="bg-slate-900 text-white">
+    <footer className="bg-stone-900 text-white">
       {/* Main Footer */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+      <div className="max-w-7xl mx-auto px-6 lg:px-8 py-20">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
           {/* Brand Column */}
-          <div className="space-y-4">
+          <div className="space-y-6">
             <div className="flex items-center">
               <Image
                 src="/photos/updated_horizontal_logo_horizontal.png"
                 alt="DentureHope by Halcyon Dental"
                 width={150}
                 height={38}
-                className="h-8 w-auto"
+                className="h-8 w-auto brightness-0 invert"
               />
             </div>
-            <p className="text-slate-400 text-sm leading-relaxed">
+            <p className="text-stone-400 text-sm leading-relaxed">
               Helping denture sufferers discover hope through advanced dental implant solutions. 
               Your journey to a confident smile starts here.
             </p>
             <div className="flex space-x-4">
-              <a href={siteConfig.social.facebook} className="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-sky-500 transition-colors">
+              <a href={siteConfig.social.facebook} className="w-10 h-10 rounded-full bg-stone-800 flex items-center justify-center hover:bg-teal-500 transition-colors">
                 <FacebookIcon />
               </a>
-              <a href={siteConfig.social.instagram} className="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-sky-500 transition-colors">
+              <a href={siteConfig.social.instagram} className="w-10 h-10 rounded-full bg-stone-800 flex items-center justify-center hover:bg-teal-500 transition-colors">
                 <InstagramIcon />
               </a>
-              <a href={siteConfig.social.twitter} className="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-sky-500 transition-colors">
+              <a href={siteConfig.social.twitter} className="w-10 h-10 rounded-full bg-stone-800 flex items-center justify-center hover:bg-teal-500 transition-colors">
                 <TwitterIcon />
               </a>
             </div>
@@ -60,51 +60,51 @@ export default function Footer() {
 
           {/* Quick Links */}
           <div>
-            <h3 className="font-semibold text-lg mb-4">Quick Links</h3>
-            <ul className="space-y-3">
-              <li><Link href="/" className="text-slate-400 hover:text-sky-400 transition-colors">Home</Link></li>
-              <li><Link href="#about" className="text-slate-400 hover:text-sky-400 transition-colors">About Implants</Link></li>
-              <li><Link href="#solutions" className="text-slate-400 hover:text-sky-400 transition-colors">Solutions</Link></li>
-              <li><Link href="#chatbot" className="text-slate-400 hover:text-sky-400 transition-colors">Chat with Us</Link></li>
-              <li><Link href="#contact" className="text-slate-400 hover:text-sky-400 transition-colors">Contact</Link></li>
+            <h3 className="font-medium text-lg mb-6 tracking-wide">Quick Links</h3>
+            <ul className="space-y-4">
+              <li><Link href="/" className="text-stone-400 hover:text-teal-400 transition-colors text-sm">Home</Link></li>
+              <li><Link href="#about" className="text-stone-400 hover:text-teal-400 transition-colors text-sm">About Implants</Link></li>
+              <li><Link href="#comparison" className="text-stone-400 hover:text-teal-400 transition-colors text-sm">Solutions</Link></li>
+              <li><Link href="#chatbot" className="text-stone-400 hover:text-teal-400 transition-colors text-sm">Chat with Us</Link></li>
+              <li><Link href="#contact" className="text-stone-400 hover:text-teal-400 transition-colors text-sm">Contact</Link></li>
             </ul>
           </div>
 
           {/* Implant Solutions */}
           <div>
-            <h3 className="font-semibold text-lg mb-4">Implant Solutions</h3>
-            <ul className="space-y-3">
-              <li><span className="text-slate-400">Single Tooth Implants</span></li>
-              <li><span className="text-slate-400">Implant-Supported Dentures</span></li>
-              <li><span className="text-slate-400">Full Arch Restoration</span></li>
-              <li><span className="text-slate-400">All-on-4® Treatment</span></li>
-              <li><span className="text-slate-400">Zygomatic Implants</span></li>
+            <h3 className="font-medium text-lg mb-6 tracking-wide">Implant Solutions</h3>
+            <ul className="space-y-4">
+              <li><span className="text-stone-400 text-sm">LeClerq-Martinez Bridge</span></li>
+              <li><span className="text-stone-400 text-sm">4 Implant Hybrid</span></li>
+              <li><span className="text-stone-400 text-sm">2 Implant Overdenture</span></li>
+              <li><span className="text-stone-400 text-sm">Single Tooth Implants</span></li>
+              <li><span className="text-stone-400 text-sm">Full Arch Restoration</span></li>
             </ul>
           </div>
 
           {/* Contact Info */}
           <div>
-            <h3 className="font-semibold text-lg mb-4">Contact Us</h3>
-            <ul className="space-y-4">
-              <li className="flex items-start space-x-3">
-                <MapPin className="w-5 h-5 text-sky-400 flex-shrink-0 mt-0.5" />
-                <span className="text-slate-400 text-sm">{siteConfig.address}</span>
+            <h3 className="font-medium text-lg mb-6 tracking-wide">Contact Us</h3>
+            <ul className="space-y-5">
+              <li className="flex items-start space-x-4">
+                <MapPin className="w-5 h-5 text-teal-400 flex-shrink-0 mt-0.5" />
+                <span className="text-stone-400 text-sm">{siteConfig.address}</span>
               </li>
-              <li className="flex items-center space-x-3">
-                <Phone className="w-5 h-5 text-sky-400 flex-shrink-0" />
-                <a href={`tel:${siteConfig.phone}`} className="text-slate-400 hover:text-sky-400 transition-colors">
+              <li className="flex items-center space-x-4">
+                <Phone className="w-5 h-5 text-teal-400 flex-shrink-0" />
+                <a href={`tel:${siteConfig.phone}`} className="text-stone-400 hover:text-teal-400 transition-colors text-sm">
                   {siteConfig.phone}
                 </a>
               </li>
-              <li className="flex items-center space-x-3">
-                <Mail className="w-5 h-5 text-sky-400 flex-shrink-0" />
-                <a href={`mailto:${siteConfig.email}`} className="text-slate-400 hover:text-sky-400 transition-colors">
+              <li className="flex items-center space-x-4">
+                <Mail className="w-5 h-5 text-teal-400 flex-shrink-0" />
+                <a href={`mailto:${siteConfig.email}`} className="text-stone-400 hover:text-teal-400 transition-colors text-sm">
                   {siteConfig.email}
                 </a>
               </li>
-              <li className="flex items-center space-x-3">
-                <Clock className="w-5 h-5 text-sky-400 flex-shrink-0" />
-                <span className="text-slate-400 text-sm">{siteConfig.hours}</span>
+              <li className="flex items-center space-x-4">
+                <Clock className="w-5 h-5 text-teal-400 flex-shrink-0" />
+                <span className="text-stone-400 text-sm">{siteConfig.hours}</span>
               </li>
             </ul>
           </div>
@@ -112,16 +112,16 @@ export default function Footer() {
       </div>
 
       {/* Bottom Bar */}
-      <div className="border-t border-slate-800">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+      <div className="border-t border-stone-800">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8 py-6">
           <div className="flex flex-col md:flex-row items-center justify-between space-y-4 md:space-y-0">
-            <p className="text-slate-500 text-sm">
+            <p className="text-stone-500 text-sm">
               © {new Date().getFullYear()} {siteConfig.clinic}. All rights reserved.
             </p>
-            <div className="flex space-x-6 text-sm">
-              <Link href="#" className="text-slate-500 hover:text-slate-300 transition-colors">Privacy Policy</Link>
-              <Link href="#" className="text-slate-500 hover:text-slate-300 transition-colors">Terms of Service</Link>
-              <Link href="#" className="text-slate-500 hover:text-slate-300 transition-colors">HIPAA Notice</Link>
+            <div className="flex space-x-8 text-sm">
+              <Link href="#" className="text-stone-500 hover:text-stone-300 transition-colors">Privacy Policy</Link>
+              <Link href="#" className="text-stone-500 hover:text-stone-300 transition-colors">Terms of Service</Link>
+              <Link href="#" className="text-stone-500 hover:text-stone-300 transition-colors">HIPAA Notice</Link>
             </div>
           </div>
         </div>

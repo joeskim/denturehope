@@ -71,16 +71,16 @@ export default function ContactForm() {
   if (isSubmitted) {
     return (
       <div className="text-center py-12">
-        <div className="w-20 h-20 rounded-full bg-green-100 flex items-center justify-center mx-auto mb-6">
-          <CheckCircle className="w-10 h-10 text-green-500" />
+        <div className="w-20 h-20 rounded-full bg-teal-100 flex items-center justify-center mx-auto mb-6">
+          <CheckCircle className="w-10 h-10 text-teal-600" />
         </div>
-        <h3 className="text-2xl font-bold text-slate-900 mb-4">Thank You!</h3>
-        <p className="text-slate-600 mb-6">
+        <h3 className="text-2xl font-medium text-stone-900 mb-4">Thank You!</h3>
+        <p className="text-stone-600 mb-8 leading-relaxed">
           We&apos;ve received your request and will contact you within 24 hours 
           to schedule your free consultation.
         </p>
-        <p className="text-sm text-slate-500">
-          Questions? Call us at (555) 123-4567
+        <p className="text-sm text-stone-500">
+          Questions? Call us at 331.287.3420
         </p>
       </div>
     );
@@ -89,7 +89,7 @@ export default function ContactForm() {
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
       <div>
-        <label htmlFor="name" className="block text-sm font-medium text-slate-700 mb-2">
+        <label htmlFor="name" className="block text-sm font-medium text-stone-700 mb-2">
           Full Name *
         </label>
         <input
@@ -98,16 +98,16 @@ export default function ContactForm() {
           name="name"
           value={formData.name}
           onChange={handleChange}
-          className={`w-full px-4 py-3 rounded-xl border ${
-            errors.name ? "border-red-300 focus:ring-red-500" : "border-slate-200 focus:ring-sky-500"
-          } focus:outline-none focus:ring-2 transition-colors`}
+          className={`w-full px-5 py-4 rounded-xl border ${
+            errors.name ? "border-red-300 focus:ring-red-500" : "border-stone-200 focus:ring-teal-500"
+          } focus:outline-none focus:ring-2 transition-colors bg-white`}
           placeholder="Jane Doe"
         />
         {errors.name && <p className="text-red-500 text-sm mt-1">{errors.name}</p>}
       </div>
 
       <div>
-        <label htmlFor="email" className="block text-sm font-medium text-slate-700 mb-2">
+        <label htmlFor="email" className="block text-sm font-medium text-stone-700 mb-2">
           Email Address *
         </label>
         <input
@@ -116,16 +116,16 @@ export default function ContactForm() {
           name="email"
           value={formData.email}
           onChange={handleChange}
-          className={`w-full px-4 py-3 rounded-xl border ${
-            errors.email ? "border-red-300 focus:ring-red-500" : "border-slate-200 focus:ring-sky-500"
-          } focus:outline-none focus:ring-2 transition-colors`}
+          className={`w-full px-5 py-4 rounded-xl border ${
+            errors.email ? "border-red-300 focus:ring-red-500" : "border-stone-200 focus:ring-teal-500"
+          } focus:outline-none focus:ring-2 transition-colors bg-white`}
           placeholder="jane@example.com"
         />
         {errors.email && <p className="text-red-500 text-sm mt-1">{errors.email}</p>}
       </div>
 
       <div>
-        <label htmlFor="phone" className="block text-sm font-medium text-slate-700 mb-2">
+        <label htmlFor="phone" className="block text-sm font-medium text-stone-700 mb-2">
           Phone Number *
         </label>
         <input
@@ -134,16 +134,16 @@ export default function ContactForm() {
           name="phone"
           value={formData.phone}
           onChange={handleChange}
-          className={`w-full px-4 py-3 rounded-xl border ${
-            errors.phone ? "border-red-300 focus:ring-red-500" : "border-slate-200 focus:ring-sky-500"
-          } focus:outline-none focus:ring-2 transition-colors`}
+          className={`w-full px-5 py-4 rounded-xl border ${
+            errors.phone ? "border-red-300 focus:ring-red-500" : "border-stone-200 focus:ring-teal-500"
+          } focus:outline-none focus:ring-2 transition-colors bg-white`}
           placeholder="(555) 123-4567"
         />
         {errors.phone && <p className="text-red-500 text-sm mt-1">{errors.phone}</p>}
       </div>
 
       <div>
-        <label htmlFor="message" className="block text-sm font-medium text-slate-700 mb-2">
+        <label htmlFor="message" className="block text-sm font-medium text-stone-700 mb-2">
           How can we help you? (Optional)
         </label>
         <textarea
@@ -152,7 +152,7 @@ export default function ContactForm() {
           value={formData.message}
           onChange={handleChange}
           rows={4}
-          className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-sky-500 transition-colors resize-none"
+          className="w-full px-5 py-4 rounded-xl border border-stone-200 focus:outline-none focus:ring-2 focus:ring-teal-500 transition-colors resize-none bg-white"
           placeholder="Tell us about your dental concerns or questions..."
         />
       </div>
@@ -160,7 +160,7 @@ export default function ContactForm() {
       <button
         type="submit"
         disabled={isSubmitting}
-        className="w-full bg-gradient-to-r from-sky-500 to-amber-400 text-white py-4 rounded-xl font-semibold text-lg hover:shadow-lg disabled:opacity-70 disabled:cursor-not-allowed transition-all flex items-center justify-center space-x-2"
+        className="w-full bg-teal-500 text-white py-4 rounded-xl font-medium text-lg hover:bg-teal-600 disabled:opacity-70 disabled:cursor-not-allowed transition-colors shadow-md flex items-center justify-center space-x-2"
       >
         {isSubmitting ? (
           <>
@@ -175,7 +175,7 @@ export default function ContactForm() {
         )}
       </button>
 
-      <p className="text-center text-sm text-slate-500">
+      <p className="text-center text-sm text-stone-500">
         Your information is secure and will never be shared.
       </p>
     </form>

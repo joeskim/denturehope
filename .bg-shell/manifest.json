@@ -1,16 +1,16 @@
 [
   {
-    "id": "9576c88f",
+    "id": "6f4f75a9",
     "label": "cd /home/hdadmin/gsd/denturehope && npm run dev",
     "command": "cd /home/hdadmin/gsd/denturehope && npm run dev",
     "cwd": "/home/hdadmin/gsd/denturehope",
     "ownerSessionFile": "/home/hdadmin/.gsd/sessions/--home-hdadmin-gsd-denturehope--/2026-04-19T03-52-10-557Z_1177762f-5357-4889-96b2-6c4a72360f9d.jsonl",
     "persistAcrossSessions": false,
-    "startedAt": 1776572211783,
+    "startedAt": 1776574785617,
     "processType": "server",
     "group": "denturehope-dev",
-    "readyPattern": "Local:",
+    "readyPattern": null,
     "readyPort": 3000,
-    "pid": 1185904
+    "pid": 1257755
   }
 ]
