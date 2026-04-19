@@ -41,10 +41,19 @@ export default function ChatBot() {
   ]);
   const [input, setInput] = useState("");
   const [isTyping, setIsTyping] = useState(false);
-  const scrollRef = useRef<HTMLDivElement>(null);
+  const listRef = useRef<HTMLDivElement>(null);
+  const didMount = useRef(false);
 
   useEffect(() => {
-    scrollRef.current?.scrollIntoView({ behavior: "smooth" });
+    const el = listRef.current;
+    if (!el) return;
+    if (!didMount.current) {
+      // First render: jump without scrolling the page.
+      el.scrollTop = el.scrollHeight;
+      didMount.current = true;
+      return;
+    }
+    el.scrollTo({ top: el.scrollHeight, behavior: "smooth" });
   }, [messages]);
 
   const generate = (msg: string) => {
@@ -115,7 +124,7 @@ export default function ChatBot() {
         </div>
       </div>
 
-      <div style={{ flex: 1, overflowY: "auto", padding: "24px", display: "flex", flexDirection: "column", gap: 16 }}>
+      <div ref={listRef} style={{ flex: 1, overflowY: "auto", padding: "24px", display: "flex", flexDirection: "column", gap: 16 }}>
         {messages.map((m, i) => (
           <div
             key={i}
@@ -175,7 +184,6 @@ export default function ChatBot() {
             `}</style>
           </div>
         )}
-        <div ref={scrollRef} />
       </div>
 
       <form
