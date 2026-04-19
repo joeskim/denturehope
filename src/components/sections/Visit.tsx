@@ -6,7 +6,7 @@ export default function Visit() {
       id="contact"
       style={{
         background: "var(--color-surface)",
-        padding: "112px 0",
+        padding: "var(--space-section) 0",
         borderTop: "1px solid var(--color-line)",
       }}
     >

@@ -1,18 +1,22 @@
 @import "tailwindcss";
 
 :root {
-  /* Refined Teal palette — design handoff */
-  --color-bg: #F7F4EF;
+  /* Ink + Amber palette — design handoff */
+  --color-bg: #F2EFE9;
   --color-surface: #FFFFFF;
-  --color-ink: #14110F;
-  --color-ink-soft: #4A433C;
-  --color-muted: #8A8075;
-  --color-line: #E5DED3;
-  --color-primary: #0D7168;
-  --color-primary-ink: #064A44;
-  --color-primary-soft: #E7F1EF;
-  --color-accent: #B8651B;
-  --color-accent-soft: #F6E9D6;
+  --color-ink: #0A0A0A;
+  --color-ink-soft: #2A2A2A;
+  --color-muted: #7A756E;
+  --color-line: #DCD6CB;
+  --color-primary: #0A0A0A;
+  --color-primary-ink: #000000;
+  --color-primary-soft: #EFEBE3;
+  --color-accent: #D97706;
+  --color-accent-soft: #FDEBD0;
+
+  /* Compact density */
+  --space-section: 80px;
+  --space-block: 32px;
 
   --font-display: "Instrument Serif", "Cormorant Garamond", Georgia, serif;
   --font-body: var(--font-geist-sans), "Geist", system-ui, -apple-system, sans-serif;
@@ -40,7 +44,7 @@ button { font: inherit; }
 a { transition: opacity 0.2s, color 0.2s, background 0.2s; }
 a:hover { opacity: 0.82; }
 
-::selection { background: var(--color-primary); color: #fff; }
+::selection { background: var(--color-accent); color: #fff; }
 
 ::-webkit-scrollbar { width: 10px; }
 ::-webkit-scrollbar-track { background: var(--color-bg); }
@@ -75,5 +79,9 @@ a:hover { opacity: 0.82; }
 
 .display em, .display i {
   font-style: italic;
-  color: var(--color-primary);
+  color: var(--color-accent);
+}
+
+.section {
+  padding: var(--space-section) 0;
 }

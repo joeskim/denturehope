@@ -39,8 +39,8 @@ export default function Navbar() {
         left: 0,
         right: 0,
         zIndex: 100,
-        background: "var(--color-surface)",
-        borderBottom: "1px solid var(--color-line)",
+        background: "var(--color-ink)",
+        borderBottom: "1px solid rgba(242,239,233,0.08)",
         fontFamily: "var(--font-body)",
       }}
     >
@@ -66,7 +66,7 @@ export default function Navbar() {
             width={180}
             height={45}
             priority
-            style={{ height: 36, width: "auto", display: "block" }}
+            style={{ height: 36, width: "auto", display: "block", filter: "brightness(0) invert(1)" }}
           />
         </Link>
 
@@ -76,7 +76,7 @@ export default function Navbar() {
               display: "flex",
               gap: w >= 1240 ? 36 : 28,
               fontSize: 13,
-              color: "var(--color-ink-soft)",
+              color: "rgba(242,239,233,0.7)",
               whiteSpace: "nowrap",
               minWidth: 0,
             }}
@@ -94,7 +94,7 @@ export default function Navbar() {
             <a
               href="tel:331.287.3420"
               style={{
-                color: "var(--color-ink-soft)",
+                color: "rgba(242,239,233,0.7)",
                 fontSize: 13,
                 textDecoration: "none",
                 fontFamily: "var(--font-mono)",
@@ -109,13 +109,15 @@ export default function Navbar() {
             <a
               href="#contact"
               style={{
-                background: "var(--color-primary)",
-                color: "#fff",
+                background: "var(--color-accent)",
+                color: "var(--color-ink)",
                 padding: "10px 18px",
-                borderRadius: 999,
-                fontSize: 13,
+                borderRadius: 0,
+                fontSize: 12,
+                fontWeight: 600,
+                letterSpacing: "0.04em",
+                textTransform: "uppercase",
                 textDecoration: "none",
-                fontWeight: 500,
                 whiteSpace: "nowrap",
               }}
             >
@@ -136,9 +138,9 @@ export default function Navbar() {
                 gap: 4,
               }}
             >
-              <span style={{ width: 22, height: 1.5, background: "var(--color-ink)", display: "block" }} />
-              <span style={{ width: 22, height: 1.5, background: "var(--color-ink)", display: "block" }} />
-              <span style={{ width: 22, height: 1.5, background: "var(--color-ink)", display: "block" }} />
+              <span style={{ width: 22, height: 1.5, background: "var(--color-bg)", display: "block" }} />
+              <span style={{ width: 22, height: 1.5, background: "var(--color-bg)", display: "block" }} />
+              <span style={{ width: 22, height: 1.5, background: "var(--color-bg)", display: "block" }} />
             </button>
           )}
         </div>
@@ -147,8 +149,8 @@ export default function Navbar() {
       {isMobile && menuOpen && (
         <div
           style={{
-            background: "var(--color-surface)",
-            borderTop: "1px solid var(--color-line)",
+            background: "var(--color-ink)",
+            borderTop: "1px solid rgba(242,239,233,0.08)",
             padding: "20px clamp(20px, 3vw, 40px) 28px",
           }}
         >
@@ -159,11 +161,11 @@ export default function Navbar() {
                 href={l.href}
                 onClick={() => setMenuOpen(false)}
                 style={{
-                  color: "var(--color-ink)",
+                  color: "var(--color-bg)",
                   textDecoration: "none",
                   padding: "12px 0",
                   fontSize: 15,
-                  borderBottom: "1px solid var(--color-line)",
+                  borderBottom: "1px solid rgba(242,239,233,0.08)",
                 }}
               >
                 {l.label}
@@ -175,13 +177,15 @@ export default function Navbar() {
               href="#contact"
               onClick={() => setMenuOpen(false)}
               style={{
-                background: "var(--color-primary)",
-                color: "#fff",
+                background: "var(--color-accent)",
+                color: "var(--color-ink)",
                 padding: "12px 20px",
-                borderRadius: 999,
-                fontSize: 14,
+                borderRadius: 0,
+                fontSize: 13,
+                fontWeight: 600,
+                letterSpacing: "0.04em",
+                textTransform: "uppercase",
                 textDecoration: "none",
-                fontWeight: 500,
                 flex: 1,
                 textAlign: "center",
                 minWidth: 140,
@@ -192,11 +196,11 @@ export default function Navbar() {
             <a
               href="tel:331.287.3420"
               style={{
-                color: "var(--color-ink)",
+                color: "var(--color-bg)",
                 fontSize: 14,
                 textDecoration: "none",
                 padding: "12px 20px",
-                border: "1px solid var(--color-line)",
+                border: "1px solid rgba(242,239,233,0.3)",
                 borderRadius: 999,
                 fontFamily: "var(--font-mono)",
                 letterSpacing: "0.04em",
