@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
-import { Send, Bot, User, MessageCircle } from "lucide-react";
 
 interface Message {
   role: "user" | "assistant";
@@ -9,172 +8,219 @@ interface Message {
 }
 
 const initialResponses = [
-  "Thank you for reaching out! I'd be happy to help you learn about dental implant options. What's your primary concern — comfort, appearance, or functionality?",
-  "Great question! Dental implants can solve many denture-related issues. Would you like to know about single implants, implant-supported dentures, or full arch solutions?",
-  "Our free consultation can help determine the best solution for your specific needs. Would you like to schedule one, or do you have more questions?",
+  "Happy to help. Is your main concern the cost, the procedure itself, or how long the teeth will last?",
+  "Good question. Would you like to know about the LM Bridge, 4-implant hybrid, or 2-implant overdenture?",
+  "The free consultation is the fastest way to get exact answers for your case. Want me to pass along your availability?",
 ];
 
-const knowledgeBase = {
-  "cost": "We offer competitive pricing on all implant solutions. Our LeClerq-Martinez Bridge — the premium fixed full-arch option — is available for less than half what you'd find elsewhere in the US, thanks to our in-house implant laboratory. Fees vary by treatment: 2 Implant Overdenture starts around $3,000-$6,500 per arch, Hybrid on 4 implants is around $8,700 per arch, and our LM Bridge is also $8,700 per arch with minor grafting included. During your free consultation, we'll create a personalized treatment plan with transparent pricing. Would you like to schedule one?",
-  "pain": "Most patients report minimal discomfort during implant procedures, thanks to modern anesthesia and sedation options. We offer both IV and oral conscious sedation so you can have invasive procedures with little to no memory of the appointment. Any post-procedure soreness typically subsides within a few days. Our team will ensure you're comfortable throughout the entire process.",
-  "time": "Implants typically take 4-6 months to heal depending on whether they're placed in extraction sites or healed bone. Temporary restorations are often provided at various stages. For the LM Bridge and 4-implant hybrid, most patients leave with a temporary restoration within a week of surgery. The final restoration is delivered after healing is complete — typically 3 weeks to 3 months after that.",
-  "all-on-4": "The 4-implant approach has limitations that the LeClerq-Martinez Bridge solves. What if one implant fails? What if a crown chips? What do patients wear during repairs? Our LM Bridge uses 6-10 implants for superior support, less bone/gum shrinkage issues, and easy individual crown repair — no expensive temporaries needed. It's the restoration of choice for durability, aesthetics, repairability, and maximum comfort. We offer the 4-implant hybrid at $8,700 per arch, but the LM Bridge at the same price point is the superior choice.",
-  "consultation": "Our free consultation includes a review of your dental history, thorough examination, discussion of your goals and concerns, explanation of all treatment options, and a personalized treatment plan. There's no obligation — just honest answers about which solution is right for you. Schedule by calling 331.287.3420 or filling out our contact form.",
-  "insurance": "We understand cost is a major factor. We work with most insurance plans and offer flexible financing options. Because we handle both surgical and restorative procedures in-house, we're able to offer lower prices than most dental offices. Call us at 331.287.3420 to discuss payment options.",
-  "lm bridge": "The LeClerq-Martinez Implant Bridge is our signature solution. Perfected by Dr. Philippe LeClerq of Paris and his master technician Jean-François Martinez, it features a screw-retained implant framework with individually cemented crowns. Key benefits: 6-10 implants for maximum support, individual crown repair without removing the entire bridge, less tissue shrinkage, no need for expensive temporaries during repairs, and a natural feel without bulky plastic. And at $8,700 per arch, it's the best value in the US.",
-  "sedation": "We offer both IV and oral conscious sedation for your comfort. This allows invasive procedures to be accomplished with little to no memory of the appointment. Another benefit is that more can be accomplished in fewer appointments. Sedation can be safely administered to most patients — just follow the special pre-op instructions. Many patients say they wouldn't have been able to complete their treatment without sedation.",
-  "warranty": "Unlike other providers, we include a 3-year limited warranty on all final restorations at no additional cost. The peace of mind from knowing your implant surgery and reconstruction were done properly is priceless. Plus, with the LM Bridge, repairs are simple — almost any dentist can replace a single crown without removing the entire bridge.",
+const knowledgeBase: Record<string, string> = {
+  cost: "The LeClerq-Martinez Bridge is $8,700 per arch — roughly half what European clinics charge for the same restoration. 2-implant overdenture starts around $3,000–$6,500 per arch; 4-implant hybrid is also $8,700. Every case is scoped and priced before we start.",
+  pain: "Most patients describe the surgical appointment as uneventful. We offer IV and oral conscious sedation, so it feels like a nap. Soreness after typically subsides within a few days.",
+  time: "You leave surgery day with a fixed temporary. The final bridge is delivered once implants have integrated — usually 3 to 6 months later, depending on whether grafting was required.",
+  "all-on-4":
+    "The 4-implant approach works for some cases, but it has tradeoffs — single crown repairs, bone shrinkage, temporization during repairs. The LM Bridge uses 6–10 implants at the same per-arch fee and is engineered around those exact problems.",
+  consultation:
+    "The free consultation covers a review of your history, an exam, a discussion of goals, all options, and a written treatment plan — no obligation. Call 331.287.3420 or use the form below.",
+  insurance:
+    "We bill most major PPO plans and offer in-house financing (Cherry, CareCredit, LendingPoint, Sunbit). Approval typically runs under 60 seconds and doesn't hit your credit.",
+  "lm bridge":
+    "The LeClerq-Martinez Bridge is a fixed, screw-retained restoration — 6–10 implants with individual crowns in a rigid titanium frame. Perfected in Paris by Dr. LeClerq and technician Jean-François Martinez. Delivered in Aurora at roughly half the European price. Includes a 3-year limited warranty.",
+  sedation:
+    "We offer IV and oral conscious sedation. Most patients have little to no memory of the appointment and we can accomplish more in one sitting.",
+  warranty:
+    "3-year limited warranty on final restorations, included at no additional cost. Single crowns are repairable without removing the bridge — any competent dentist can do it.",
 };
 
 export default function ChatBot() {
   const [messages, setMessages] = useState<Message[]>([
     {
       role: "assistant",
-      content: "👋 Hi! I'm here to help answer your questions about dental implants. What would you like to know?",
+      content:
+        "Hi — I answer questions about the LM Bridge and other implant options. What would you like to know?",
     },
   ]);
   const [input, setInput] = useState("");
   const [isTyping, setIsTyping] = useState(false);
-  const messagesEndRef = useRef<HTMLDivElement>(null);
-
-  const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
-  };
+  const scrollRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    scrollToBottom();
+    scrollRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
 
-  const generateResponse = (userMessage: string) => {
-    const lowerMessage = userMessage.toLowerCase();
-    
-    for (const [key, value] of Object.entries(knowledgeBase)) {
-      if (lowerMessage.includes(key)) {
-        return value;
-      }
-    }
-
-    if (lowerMessage.includes("schedule") || lowerMessage.includes("appointment") || lowerMessage.includes("book")) {
-      return "Great! You can schedule your free consultation by calling 331.287.3420, emailing info@halcyon.dental, filling out the contact form on this page, or clicking the 'Get Free Consultation' button. What time works best for you?";
-    }
-
-    if (lowerMessage.includes("hello") || lowerMessage.includes("hi") || lowerMessage.includes("hey")) {
-      return "Hello! I'm here to help you explore dental implant options. Whether you have questions about procedures, costs, or want to schedule a consultation, I'm happy to assist. What would you like to know?";
-    }
-
+  const generate = (msg: string) => {
+    const lower = msg.toLowerCase();
+    for (const [k, v] of Object.entries(knowledgeBase)) if (lower.includes(k)) return v;
+    if (lower.match(/schedule|appointment|book/))
+      return "Call 331.287.3420, email info@halcyon.dental, or fill in the form below with a time that works.";
+    if (lower.match(/^(hi|hello|hey)/))
+      return "Hello. Is there a specific concern about dentures or implants I can answer?";
     return initialResponses[Math.floor(Math.random() * initialResponses.length)];
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
+  const handleSubmit = async (ev: React.FormEvent) => {
+    ev.preventDefault();
     if (!input.trim()) return;
-
     const userMessage = input;
     setInput("");
-    
-    setMessages((prev) => [...prev, { role: "user", content: userMessage }]);
+    setMessages((p) => [...p, { role: "user", content: userMessage }]);
     setIsTyping(true);
-
     setTimeout(() => {
-      const response = generateResponse(userMessage);
-      setMessages((prev) => [...prev, { role: "assistant", content: response }]);
+      setMessages((p) => [...p, { role: "assistant", content: generate(userMessage) }]);
       setIsTyping(false);
-    }, 1000);
+    }, 800);
   };
 
   return (
-    <div className="flex flex-col h-[500px]">
-      {/* Header */}
-      <div className="bg-gradient-to-r from-teal-500 to-teal-600 p-4 flex items-center space-x-3">
-        <div className="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center">
-          <Bot className="w-6 h-6 text-white" />
-        </div>
-        <div>
-          <h3 className="font-medium text-white">Dental Implant Assistant</h3>
-          <p className="text-xs text-teal-100">Typically replies in seconds</p>
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        height: 520,
+        background: "var(--color-surface)",
+        border: "1px solid var(--color-line)",
+        fontFamily: "var(--font-body)",
+      }}
+    >
+      <div
+        style={{
+          padding: "18px 24px",
+          borderBottom: "1px solid var(--color-line)",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
+        }}
+      >
+        <div
+          style={{
+            fontFamily: "var(--font-mono)",
+            fontSize: 11,
+            letterSpacing: "0.12em",
+            textTransform: "uppercase",
+            color: "var(--color-ink-soft)",
+            display: "flex",
+            alignItems: "center",
+            gap: 10,
+          }}
+        >
+          <span
+            style={{
+              width: 6,
+              height: 6,
+              borderRadius: "50%",
+              background: "var(--color-primary)",
+              display: "inline-block",
+            }}
+          />
+          Assistant · Typically answers in seconds
         </div>
       </div>
 
-      {/* Messages */}
-      <div className="flex-1 overflow-y-auto p-6 space-y-4">
-        {messages.map((message, index) => (
+      <div style={{ flex: 1, overflowY: "auto", padding: "24px", display: "flex", flexDirection: "column", gap: 16 }}>
+        {messages.map((m, i) => (
           <div
-            key={index}
-            className={`flex ${message.role === "user" ? "justify-end" : "justify-start"}`}
+            key={i}
+            style={{
+              alignSelf: m.role === "user" ? "flex-end" : "flex-start",
+              maxWidth: "85%",
+            }}
           >
             <div
-              className={`flex items-start space-x-3 max-w-[85%] ${
-                message.role === "user" ? "flex-row-reverse space-x-reverse" : ""
-              }`}
+              style={{
+                fontFamily: "var(--font-mono)",
+                fontSize: 10,
+                letterSpacing: "0.1em",
+                textTransform: "uppercase",
+                color: "var(--color-muted)",
+                marginBottom: 6,
+              }}
             >
-              <div
-                className={`w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 ${
-                  message.role === "user"
-                    ? "bg-stone-800"
-                    : "bg-gradient-to-br from-teal-500 to-teal-600"
-                }`}
-              >
-                {message.role === "user" ? (
-                  <User className="w-4 h-4 text-white" />
-                ) : (
-                  <Bot className="w-4 h-4 text-white" />
-                )}
-              </div>
-              <div
-                className={`rounded-2xl px-5 py-3 ${
-                  message.role === "user"
-                    ? "bg-teal-500 text-white rounded-tr-lg"
-                    : "bg-stone-100 text-stone-800 rounded-tl-lg"
-                }`}
-              >
-                <p className="text-sm leading-relaxed whitespace-pre-wrap">{message.content}</p>
-              </div>
+              {m.role === "user" ? "You" : "Halcyon"}
+            </div>
+            <div
+              style={{
+                padding: "14px 18px",
+                background: m.role === "user" ? "var(--color-ink)" : "var(--color-primary-soft)",
+                color: m.role === "user" ? "var(--color-bg)" : "var(--color-ink)",
+                fontSize: 14,
+                lineHeight: 1.55,
+                borderRadius: 2,
+                whiteSpace: "pre-wrap",
+              }}
+            >
+              {m.content}
             </div>
           </div>
         ))}
-        
         {isTyping && (
-          <div className="flex justify-start">
-            <div className="flex items-start space-x-3">
-              <div className="w-8 h-8 rounded-full bg-gradient-to-br from-teal-500 to-teal-600 flex items-center justify-center">
-                <Bot className="w-4 h-4 text-white" />
-              </div>
-              <div className="bg-stone-100 rounded-2xl rounded-tl-lg px-5 py-3">
-                <div className="flex space-x-1">
-                  <div className="w-2 h-2 bg-stone-400 rounded-full animate-bounce" style={{ animationDelay: "0ms" }}></div>
-                  <div className="w-2 h-2 bg-stone-400 rounded-full animate-bounce" style={{ animationDelay: "150ms" }}></div>
-                  <div className="w-2 h-2 bg-stone-400 rounded-full animate-bounce" style={{ animationDelay: "300ms" }}></div>
-                </div>
-              </div>
-            </div>
+          <div style={{ alignSelf: "flex-start", display: "flex", gap: 6, padding: "14px 18px" }}>
+            {[0, 150, 300].map((d) => (
+              <span
+                key={d}
+                style={{
+                  width: 6,
+                  height: 6,
+                  borderRadius: "50%",
+                  background: "var(--color-muted)",
+                  animation: "dh-bounce 1s infinite",
+                  animationDelay: `${d}ms`,
+                  display: "inline-block",
+                }}
+              />
+            ))}
+            <style jsx>{`
+              @keyframes dh-bounce {
+                0%, 80%, 100% { transform: translateY(0); opacity: 0.4; }
+                40% { transform: translateY(-4px); opacity: 1; }
+              }
+            `}</style>
           </div>
         )}
-        
-        <div ref={messagesEndRef} />
+        <div ref={scrollRef} />
       </div>
 
-      {/* Input */}
-      <form onSubmit={handleSubmit} className="p-4 border-t border-slate-200">
-        <div className="flex items-center space-x-2">
-          <input
-            type="text"
-            value={input}
-            onChange={(e) => setInput(e.target.value)}
-            placeholder="Type your question..."
-            className="flex-1 px-5 py-3 rounded-full border border-stone-200 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent bg-white"
-          />
-          <button
-            type="submit"
-            disabled={!input.trim()}
-            className="w-12 h-12 rounded-full bg-teal-500 flex items-center justify-center text-white hover:bg-teal-600 disabled:opacity-50 disabled:cursor-not-allowed transition-colors shadow-md"
-          >
-            <Send className="w-5 h-5" />
-          </button>
-        </div>
-        <div className="mt-2 flex items-center justify-center space-x-1 text-xs text-slate-400">
-          <MessageCircle className="w-3 h-3" />
-          <span>Powered by AI — for informational purposes only</span>
-        </div>
+      <form
+        onSubmit={handleSubmit}
+        style={{
+          padding: 16,
+          borderTop: "1px solid var(--color-line)",
+          display: "flex",
+          gap: 8,
+          alignItems: "stretch",
+        }}
+      >
+        <input
+          type="text"
+          value={input}
+          onChange={(e) => setInput(e.target.value)}
+          placeholder="Ask about cost, healing, financing…"
+          style={{
+            flex: 1,
+            padding: "14px 16px",
+            background: "var(--color-bg)",
+            border: "1px solid var(--color-line)",
+            borderRadius: 2,
+            fontFamily: "var(--font-body)",
+            fontSize: 14,
+            color: "var(--color-ink)",
+            outline: "none",
+          }}
+        />
+        <button
+          type="submit"
+          disabled={!input.trim()}
+          style={{
+            padding: "14px 22px",
+            background: input.trim() ? "var(--color-ink)" : "var(--color-line)",
+            color: input.trim() ? "var(--color-bg)" : "var(--color-muted)",
+            border: "none",
+            borderRadius: 2,
+            fontFamily: "var(--font-body)",
+            fontSize: 14,
+            cursor: input.trim() ? "pointer" : "not-allowed",
+          }}
+        >
+          Send →
+        </button>
       </form>
     </div>
   );

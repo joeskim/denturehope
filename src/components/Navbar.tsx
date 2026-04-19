@@ -3,111 +3,213 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { Menu, X, Phone } from "lucide-react";
-import { cn } from "@/lib/utils";
-import { navigation, siteConfig } from "@/lib/utils";
+
+const LINKS = [
+  { label: "Solutions", href: "#solutions" },
+  { label: "LM Bridge", href: "#lm-bridge" },
+  { label: "About", href: "#about" },
+  { label: "Stories", href: "#stories" },
+  { label: "FAQ", href: "#faq" },
+  { label: "Contact", href: "#contact" },
+];
 
 export default function Navbar() {
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [w, setW] = useState(1400);
+  const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    setW(window.innerWidth);
+    const on = () => setW(window.innerWidth);
+    window.addEventListener("resize", on);
+    return () => window.removeEventListener("resize", on);
   }, []);
 
-  return (
-    <header
-      className={cn(
-        "fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-white shadow-sm border-b border-stone-200"
-      )}
-    >
-      <nav className="max-w-7xl mx-auto px-6 lg:px-8">
-        <div className="flex items-center justify-between h-20">
-          {/* Logo - always visible with proper styling */}
-          <Link href="/" className="flex items-center">
-            <Image
-              src="/photos/updated_horizontal_logo_horizontal.png"
-              alt="DentureHope by Halcyon Dental"
-              width={180}
-              height={45}
-              className="h-10 w-auto"
-              priority
-            />
-          </Link>
+  const isMobile = w < 800;
+  const showPhone = w >= 1240;
+  const visible = w >= 1240 ? LINKS
+    : w >= 1000 ? LINKS.filter(l => ["Solutions", "LM Bridge", "Stories", "FAQ"].includes(l.label))
+    : w >= 800 ? LINKS.filter(l => ["LM Bridge", "Stories", "FAQ"].includes(l.label))
+    : [];
 
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-10">
-            {navigation.map((item) => (
-              <Link
-                key={item.name}
-                href={item.href}
-                className="font-semibold text-sm tracking-wide text-stone-800 hover:text-teal-600 transition-colors"
-              >
-                {item.name}
-              </Link>
+  return (
+    <nav
+      style={{
+        position: "fixed",
+        top: 0,
+        left: 0,
+        right: 0,
+        zIndex: 100,
+        background: "var(--color-surface)",
+        borderBottom: "1px solid var(--color-line)",
+        fontFamily: "var(--font-body)",
+      }}
+    >
+      <div
+        style={{
+          maxWidth: 1400,
+          margin: "0 auto",
+          padding: "0 clamp(20px, 3vw, 40px)",
+          height: 64,
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
+          gap: 16,
+        }}
+      >
+        <Link
+          href="#top"
+          style={{ display: "flex", alignItems: "center", flexShrink: 0, textDecoration: "none" }}
+        >
+          <Image
+            src="/photos/updated_horizontal_logo_horizontal.png"
+            alt="DentureHope by Halcyon Dental"
+            width={180}
+            height={45}
+            priority
+            style={{ height: 36, width: "auto", display: "block" }}
+          />
+        </Link>
+
+        {!isMobile && (
+          <div
+            style={{
+              display: "flex",
+              gap: w >= 1240 ? 36 : 28,
+              fontSize: 13,
+              color: "var(--color-ink-soft)",
+              whiteSpace: "nowrap",
+              minWidth: 0,
+            }}
+          >
+            {visible.map((l) => (
+              <a key={l.label} href={l.href} style={{ color: "inherit", textDecoration: "none" }}>
+                {l.label}
+              </a>
             ))}
           </div>
-
-          {/* CTA Button */}
-          <div className="hidden md:flex items-center space-x-6">
-            <a
-              href={`tel:${siteConfig.phone}`}
-              className="flex items-center space-x-2 text-sm font-semibold text-teal-700 hover:text-teal-600 transition-colors"
-            >
-              <Phone className="w-4 h-4" />
-              <span>{siteConfig.phone}</span>
-            </a>
-            <Link
-              href="#contact"
-              className="bg-teal-600 text-white px-7 py-3 rounded-lg font-medium text-sm hover:bg-teal-700 transition-colors shadow-md"
-            >
-              Free Consultation
-            </Link>
-          </div>
-
-          {/* Mobile Menu Button */}
-          <button
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className={cn(
-              "md:hidden p-2 rounded-lg transition-colors",
-              isScrolled ? "text-stone-900 hover:bg-stone-100" : "text-white hover:bg-white/10"
-            )}
-          >
-            {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-          </button>
-        </div>
-
-        {/* Mobile Menu */}
-        {isMobileMenuOpen && (
-          <div className="md:hidden bg-white rounded-2xl shadow-xl mt-2 p-6 border border-stone-200">
-            <div className="space-y-2">
-              {navigation.map((item) => (
-                <Link
-                  key={item.name}
-                  href={item.href}
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className="block px-4 py-3 text-stone-800 font-medium rounded-lg hover:bg-stone-50 transition-colors"
-                >
-                  {item.name}
-                </Link>
-              ))}
-              <div className="pt-4 border-t border-stone-200">
-                <Link
-                  href="#contact"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className="block w-full text-center bg-teal-600 text-white px-6 py-3 rounded-lg font-medium"
-                >
-                  Free Consultation
-                </Link>
-              </div>
-            </div>
-          </div>
         )}
-      </nav>
-    </header>
+
+        <div style={{ display: "flex", gap: 16, alignItems: "center", flexShrink: 0 }}>
+          {showPhone && (
+            <a
+              href="tel:331.287.3420"
+              style={{
+                color: "var(--color-ink-soft)",
+                fontSize: 13,
+                textDecoration: "none",
+                fontFamily: "var(--font-mono)",
+                letterSpacing: "0.04em",
+                whiteSpace: "nowrap",
+              }}
+            >
+              331.287.3420
+            </a>
+          )}
+          {!isMobile && (
+            <a
+              href="#contact"
+              style={{
+                background: "var(--color-primary)",
+                color: "#fff",
+                padding: "10px 18px",
+                borderRadius: 999,
+                fontSize: 13,
+                textDecoration: "none",
+                fontWeight: 500,
+                whiteSpace: "nowrap",
+              }}
+            >
+              Free consult
+            </a>
+          )}
+          {isMobile && (
+            <button
+              onClick={() => setMenuOpen((v) => !v)}
+              aria-label="Menu"
+              style={{
+                background: "transparent",
+                border: "none",
+                padding: 8,
+                cursor: "pointer",
+                display: "flex",
+                flexDirection: "column",
+                gap: 4,
+              }}
+            >
+              <span style={{ width: 22, height: 1.5, background: "var(--color-ink)", display: "block" }} />
+              <span style={{ width: 22, height: 1.5, background: "var(--color-ink)", display: "block" }} />
+              <span style={{ width: 22, height: 1.5, background: "var(--color-ink)", display: "block" }} />
+            </button>
+          )}
+        </div>
+      </div>
+
+      {isMobile && menuOpen && (
+        <div
+          style={{
+            background: "var(--color-surface)",
+            borderTop: "1px solid var(--color-line)",
+            padding: "20px clamp(20px, 3vw, 40px) 28px",
+          }}
+        >
+          <div style={{ display: "flex", flexDirection: "column", gap: 4 }}>
+            {LINKS.map((l) => (
+              <a
+                key={l.label}
+                href={l.href}
+                onClick={() => setMenuOpen(false)}
+                style={{
+                  color: "var(--color-ink)",
+                  textDecoration: "none",
+                  padding: "12px 0",
+                  fontSize: 15,
+                  borderBottom: "1px solid var(--color-line)",
+                }}
+              >
+                {l.label}
+              </a>
+            ))}
+          </div>
+          <div style={{ display: "flex", gap: 12, marginTop: 20, flexWrap: "wrap" }}>
+            <a
+              href="#contact"
+              onClick={() => setMenuOpen(false)}
+              style={{
+                background: "var(--color-primary)",
+                color: "#fff",
+                padding: "12px 20px",
+                borderRadius: 999,
+                fontSize: 14,
+                textDecoration: "none",
+                fontWeight: 500,
+                flex: 1,
+                textAlign: "center",
+                minWidth: 140,
+              }}
+            >
+              Free consult
+            </a>
+            <a
+              href="tel:331.287.3420"
+              style={{
+                color: "var(--color-ink)",
+                fontSize: 14,
+                textDecoration: "none",
+                padding: "12px 20px",
+                border: "1px solid var(--color-line)",
+                borderRadius: 999,
+                fontFamily: "var(--font-mono)",
+                letterSpacing: "0.04em",
+                textAlign: "center",
+                flex: 1,
+                minWidth: 140,
+              }}
+            >
+              331.287.3420
+            </a>
+          </div>
+        </div>
+      )}
+    </nav>
   );
 }
