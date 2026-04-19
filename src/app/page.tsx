@@ -32,86 +32,125 @@ export default function Home() {
     <div className="min-h-screen bg-stone-50">
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-        {/* Solid elegant background */}
-        <div className="absolute inset-0 bg-gradient-to-br from-stone-900 via-stone-800 to-teal-900"></div>
-        
-        {/* Subtle pattern overlay */}
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute inset-0" style={{
-            backgroundImage: `radial-gradient(circle at 1px 1px, rgba(255,255,255,0.15) 1px, transparent 0)`,
-            backgroundSize: '40px 40px'
-          }}></div>
+        {/* Background Image */}
+        <div className="absolute inset-0">
+          <Image
+            src="/photos/confident-smile.png"
+            alt="Confident patient with dental implants"
+            fill
+            className="object-cover object-center"
+            priority
+          />
+          {/* Dark overlay for readability */}
+          <div className="absolute inset-0 bg-gradient-to-r from-stone-900/95 via-stone-900/85 to-stone-900/75"></div>
         </div>
 
         {/* Content */}
-        <div className="relative z-10 max-w-6xl mx-auto px-6 lg:px-8 py-32 text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="space-y-10"
-          >
-            {/* Badge */}
+        <div className="relative z-10 max-w-6xl mx-auto px-6 lg:px-8 py-32">
+          <div className="max-w-3xl">
             <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.2, duration: 0.5 }}
-              className="inline-flex items-center space-x-2 bg-white/10 backdrop-blur-md px-5 py-2 rounded-full border border-white/10"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+              className="space-y-8"
             >
-              <Sparkles className="w-4 h-4 text-amber-400" />
-              <span className="text-white/90 text-sm font-medium tracking-wide">Free consultations available</span>
-            </motion.div>
-
-            {/* Headline */}
-            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-light text-white leading-tight tracking-tight">
-              Say Goodbye to{' '}
-              <span className="bg-gradient-to-r from-teal-400 to-amber-300 bg-clip-text text-transparent font-semibold">
-                Denture Discomfort
-              </span>
-            </h1>
-
-            {/* Subheadline */}
-            <p className="text-xl md:text-2xl text-white/70 max-w-2xl mx-auto leading-relaxed font-light">
-              Discover advanced dental implant solutions that restore your confidence, 
-              comfort, and quality of life.
-            </p>
-
-            {/* CTA Buttons */}
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-5 pt-4">
-              <Link
-                href="#contact"
-                className="group flex items-center space-x-3 bg-teal-500 text-white px-10 py-5 rounded-xl font-medium text-lg hover:bg-teal-600 hover:shadow-2xl hover:scale-[1.02] transition-all duration-300 shadow-lg"
+              {/* Logo */}
+              <motion.div
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 0.1, duration: 0.5 }}
+                className="mb-8"
               >
-                <span>Get Your Free Consultation</span>
-                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-              </Link>
-              <button
-                onClick={() => setShowVideoModal(true)}
-                className="flex items-center space-x-4 text-white/80 hover:text-white transition-colors py-4"
+                <Image
+                  src="/photos/updated_horizontal_logo_horizontal.png"
+                  alt="DentureHope by Halcyon Dental"
+                  width={220}
+                  height={55}
+                  className="h-14 w-auto brightness-0 invert"
+                  priority
+                />
+              </motion.div>
+
+              {/* Badge */}
+              <motion.div
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 0.2, duration: 0.5 }}
+                className="inline-flex items-center space-x-2 bg-teal-500/20 backdrop-blur-sm px-5 py-2 rounded-full border border-teal-400/30"
               >
-                <div className="w-16 h-16 rounded-full bg-white/10 backdrop-blur-md flex items-center justify-center hover:bg-white/20 transition-colors border border-white/20">
-                  <Play className="w-6 h-6 ml-1" />
+                <Sparkles className="w-4 h-4 text-teal-400" />
+                <span className="text-teal-300 text-sm font-medium tracking-wide">Free consultations available</span>
+              </motion.div>
+
+              {/* Headline */}
+              <motion.h1
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.3, duration: 0.6 }}
+                className="text-4xl sm:text-5xl md:text-6xl font-light text-white leading-tight tracking-tight"
+              >
+                Say Goodbye to{' '}
+                <span className="bg-gradient-to-r from-teal-400 to-teal-300 bg-clip-text text-transparent font-semibold">
+                  Denture Discomfort
+                </span>
+              </motion.h1>
+
+              {/* Subheadline */}
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.4, duration: 0.6 }}
+                className="text-xl md:text-2xl text-stone-300 max-w-2xl leading-relaxed font-light"
+              >
+                Discover advanced dental implant solutions that restore your confidence, 
+                comfort, and quality of life.
+              </motion.p>
+
+              {/* CTA Buttons */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.5, duration: 0.6 }}
+                className="flex flex-col sm:flex-row items-start gap-5 pt-4"
+              >
+                <Link
+                  href="#contact"
+                  className="group flex items-center space-x-3 bg-teal-500 text-white px-10 py-5 rounded-xl font-medium text-lg hover:bg-teal-400 hover:shadow-xl transition-all duration-300 shadow-lg"
+                >
+                  <span>Get Your Free Consultation</span>
+                  <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                </Link>
+                <a
+                  href={`tel:${siteConfig.phone}`}
+                  className="flex items-center space-x-3 text-white hover:text-teal-300 transition-colors py-5 px-4"
+                >
+                  <Phone className="w-5 h-5" />
+                  <span className="font-medium tracking-wide">{siteConfig.phone}</span>
+                </a>
+              </motion.div>
+
+              {/* Trust Indicators */}
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.7, duration: 0.6 }}
+                className="flex flex-wrap items-center gap-8 pt-8 text-stone-400"
+              >
+                <div className="flex items-center space-x-2">
+                  <Star className="w-5 h-5 text-amber-400 fill-amber-400" />
+                  <span className="text-sm tracking-wide">4.9/5 Rating</span>
                 </div>
-                <span className="font-medium tracking-wide">Watch Patient Stories</span>
-              </button>
-            </div>
-
-            {/* Trust Indicators */}
-            <div className="flex flex-wrap items-center justify-center gap-10 pt-16 text-white/50">
-              <div className="flex items-center space-x-2">
-                <Star className="w-5 h-5 text-amber-400 fill-amber-400" />
-                <span className="text-sm tracking-wide">4.9/5 Rating</span>
-              </div>
-              <div className="flex items-center space-x-2">
-                <Users className="w-5 h-5" />
-                <span className="text-sm tracking-wide">10,000+ Happy Patients</span>
-              </div>
-              <div className="flex items-center space-x-2">
-                <Award className="w-5 h-5" />
-                <span className="text-sm tracking-wide">Board Certified</span>
-              </div>
-            </div>
-          </motion.div>
+                <div className="flex items-center space-x-2">
+                  <Users className="w-5 h-5" />
+                  <span className="text-sm tracking-wide">10,000+ Happy Patients</span>
+                </div>
+                <div className="flex items-center space-x-2">
+                  <Award className="w-5 h-5" />
+                  <span className="text-sm tracking-wide">Board Certified</span>
+                </div>
+              </motion.div>
+            </motion.div>
+          </div>
         </div>
 
         {/* Scroll Indicator */}
@@ -120,8 +159,8 @@ export default function Home() {
           transition={{ repeat: Infinity, duration: 2 }}
           className="absolute bottom-12 left-1/2 -translate-x-1/2"
         >
-          <div className="w-6 h-10 rounded-full border border-white/20 flex items-start justify-center p-2">
-            <div className="w-1 h-2 bg-white/40 rounded-full"></div>
+          <div className="w-6 h-10 rounded-full border border-stone-600 flex items-start justify-center p-2">
+            <div className="w-1 h-2 bg-stone-500 rounded-full"></div>
           </div>
         </motion.div>
       </section>
