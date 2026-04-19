@@ -22,10 +22,7 @@ export default function Navbar() {
   return (
     <header
       className={cn(
-        "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
-        isScrolled
-          ? "bg-white shadow-md border-b border-stone-200"
-          : "bg-transparent"
+        "fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-white shadow-sm border-b border-stone-200"
       )}
     >
       <nav className="max-w-7xl mx-auto px-6 lg:px-8">
@@ -48,12 +45,7 @@ export default function Navbar() {
               <Link
                 key={item.name}
                 href={item.href}
-                className={cn(
-                  "font-semibold text-sm tracking-wide transition-colors",
-                  isScrolled 
-                    ? "text-stone-900 hover:text-teal-600" 
-                    : "text-white hover:text-teal-300"
-                )}
+                className="font-semibold text-sm tracking-wide text-stone-800 hover:text-teal-600 transition-colors"
               >
                 {item.name}
               </Link>
@@ -64,10 +56,7 @@ export default function Navbar() {
           <div className="hidden md:flex items-center space-x-6">
             <a
               href={`tel:${siteConfig.phone}`}
-              className={cn(
-                "flex items-center space-x-2 text-sm font-semibold transition-colors",
-                isScrolled ? "text-teal-700 hover:text-teal-600" : "text-white hover:text-teal-300"
-              )}
+              className="flex items-center space-x-2 text-sm font-semibold text-teal-700 hover:text-teal-600 transition-colors"
             >
               <Phone className="w-4 h-4" />
               <span>{siteConfig.phone}</span>

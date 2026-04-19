@@ -35,8 +35,8 @@ export default function Home() {
         {/* Background Image */}
         <div className="absolute inset-0">
           <Image
-            src="/photos/confident-smile.png"
-            alt="Confident patient with dental implants"
+            src="/photos/older-patient-smile.jpg"
+            alt="Confident mature patient with dental implants"
             fill
             className="object-cover object-center"
             priority
