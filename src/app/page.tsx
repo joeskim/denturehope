@@ -64,9 +64,9 @@ export default function Home() {
                 <Image
                   src="/photos/updated_horizontal_logo_horizontal.png"
                   alt="DentureHope by Halcyon Dental"
-                  width={220}
-                  height={55}
-                  className="h-14 w-auto brightness-0 invert"
+                  width={200}
+                  height={50}
+                  className="h-12 w-auto"
                   priority
                 />
               </motion.div>
@@ -89,9 +89,9 @@ export default function Home() {
                 transition={{ delay: 0.3, duration: 0.6 }}
                 className="text-4xl sm:text-5xl md:text-6xl font-light text-white leading-tight tracking-tight"
               >
-                Say Goodbye to{' '}
+                Are you ready to{' '}
                 <span className="bg-gradient-to-r from-teal-400 to-teal-300 bg-clip-text text-transparent font-semibold">
-                  Denture Discomfort
+                  smile with confidence?
                 </span>
               </motion.h1>
 

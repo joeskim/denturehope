@@ -22,25 +22,22 @@ export default function Navbar() {
   return (
     <header
       className={cn(
-        "fixed top-0 left-0 right-0 z-50 transition-all duration-500",
+        "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
         isScrolled
-          ? "bg-white/98 backdrop-blur-md shadow-sm border-b border-stone-200"
+          ? "bg-white shadow-md border-b border-stone-200"
           : "bg-transparent"
       )}
     >
       <nav className="max-w-7xl mx-auto px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
-          {/* Logo - always visible */}
+          {/* Logo - always visible with proper styling */}
           <Link href="/" className="flex items-center">
             <Image
               src="/photos/updated_horizontal_logo_horizontal.png"
               alt="DentureHope by Halcyon Dental"
               width={180}
               height={45}
-              className={cn(
-                "h-10 w-auto transition-all duration-300",
-                isScrolled ? "brightness-100" : "brightness-0 invert"
-              )}
+              className="h-10 w-auto"
               priority
             />
           </Link>
@@ -54,7 +51,7 @@ export default function Navbar() {
                 className={cn(
                   "font-semibold text-sm tracking-wide transition-colors",
                   isScrolled 
-                    ? "text-stone-800 hover:text-teal-600" 
+                    ? "text-stone-900 hover:text-teal-600" 
                     : "text-white hover:text-teal-300"
                 )}
               >
@@ -69,7 +66,7 @@ export default function Navbar() {
               href={`tel:${siteConfig.phone}`}
               className={cn(
                 "flex items-center space-x-2 text-sm font-semibold transition-colors",
-                isScrolled ? "text-teal-600 hover:text-teal-700" : "text-white hover:text-teal-300"
+                isScrolled ? "text-teal-700 hover:text-teal-600" : "text-white hover:text-teal-300"
               )}
             >
               <Phone className="w-4 h-4" />
