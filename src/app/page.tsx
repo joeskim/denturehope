@@ -35,14 +35,14 @@ export default function Home() {
         {/* Background Image */}
         <div className="absolute inset-0">
           <Image
-            src="/photos/older-patient.jpg"
-            alt="Confident mature patient with dental implants"
+            src="/photos/confident-smile.png"
+            alt="Confident dental patient"
             fill
             className="object-cover object-center"
             priority
           />
-          {/* Darker overlay to ensure text readability */}
-          <div className="absolute inset-0 bg-gradient-to-r from-stone-900/90 via-stone-900/80 to-stone-900/70"></div>
+          {/* Dark overlay for text readability */}
+          <div className="absolute inset-0 bg-gradient-to-r from-stone-900/90 via-stone-900/75 to-stone-900/60"></div>
         </div>
 
         {/* Content */}
